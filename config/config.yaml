@@ -1,0 +1,17 @@
+[DEFAULT]
+category_code = WPW
+image_type = ['jpg', 'JPEG', 'JPG', 'png', 'PNG']
+dir_type = directory
+write_image = False
+number_of_thread = 2
+number_of_image = 100000
+annotation_type = COCO
+
+[PATHS]
+shelf_measurement = D:/Img_Repo/Tf_Images/PW/WITH_GT/background_measurement.csv
+shelf_image = D:/Img_Repo/Tf_Images/PW/WITH_GT/backgrounds
+prod_measurement = D:/Img_Repo/Tf_Images/PW/WITH_GT/product_measurement_original.csv
+product_image = D:/Img_Repo/Tf_Images/PW/WITH_GT/PW_output
+product_mask = D:/Img_Repo/Tf_Images/PW/WITH_GT/PW_masks
+output_dir = D:/Img_Repo/Tf_Images/PW/WITH_GT/output
+
