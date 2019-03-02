@@ -9,7 +9,7 @@ from configparser import ConfigParser
 import multiprocessing as mp
 import datetime
 from utility.alocateProduct import SynthesizeData
-from utility.Image import Image
+from utility.Image import Canvas
 import os
 import time
 
@@ -26,7 +26,7 @@ class ImageGenerator():
         SynthesizeData.set_Property(20)
         self.Synthesizer=SynthesizeData(configFile_path)
         self.imgBlueprint=[]
-        self.Image=Image(self.Output_dir)
+        self.Image=Canvas(self.Output_dir)
     
     def runGenerator(self,Process_id=0):
         print('Running from Thread {}'.format(Process_id))
@@ -40,7 +40,7 @@ class ImageGenerator():
                    print(" Error While Processing Shelf") 
                 else:   
                    #print(shelfInfo.returnSData)
-                   self.Image.PlotImage(shelfInfo.returnSData)
+                   self.Image.PlotImage(shelfInfo.returnSData,ImagePath)
         except Exception as e:    
                print (e)
                        

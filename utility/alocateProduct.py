@@ -21,12 +21,11 @@ class SynthesizeData(LoadShelfData,LoadProductData):
     def __init__(self,configFile_path=None):
         LoadShelfData.__init__(self,configFile_path)
         LoadProductData.__init__(self,configFile_path)
-        
-        
+                
     def PopulateData(self):
-        #select Shelf Image Randomly
+        # select Shelf Image Randomly
         shelfdata=self.get_random_ShelfData
-        #select N product At random
+        # select N product At random
         indexList = self.get_Nindex_At_random(SynthesizeData.PROD_PER_RACK)
         # get The maximum Height From Index List
         Max_height = self.get_Nitems_MaxH(indexList)
@@ -37,16 +36,16 @@ class SynthesizeData(LoadShelfData,LoadProductData):
             for product in self.get_Data_from_index(indexList):
                 delta=self.getDeltaW
                 if product.fit_product(left,right,top,bottom,
-                                      SizeRatio,pasteL2R,delta):
+                                    SizeRatio,pasteL2R,delta):
                    shelfdata.Product_array.append(product.returnPData)
                    if pasteL2R:
                       left=product.xmax + 1
-                   if left > right -1:
-                      break
+                      if left > right -1:
+                         break
                    else:
                       right=product.xmin - 1
-                   if right < 0:
-                      break
+                      if right < 0:
+                         break
                 else:
                     break
         if shelfdata.boxCount > 0:

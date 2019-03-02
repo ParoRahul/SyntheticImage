@@ -6,20 +6,23 @@ Created on Fri Mar  1 19:01:22 2019
 """
 import numpy as np
 import os
+from PIL import Image
 
-class Image:
+
+class Canvas:
+    
     def __init__(self,outPtah):
         self.outpath=outPtah
         pass
     
-    def PlotImage(self,imgdict):
+    def PlotImage(self,imgdict,ImagePath):
         BGround_Image = Image.open(imgdict["path"])
         bgImageCopy = np.copy(BGround_Image)
         height,weidth = BGround_Image.size
         imgdict["ShelfHeight"]=height
         imgdict["ShelfWeidth"]=weidth
         for box in imgdict["Products"]:
-            y_min,y_max,x_min,x_max =box["xmin"],box["ymax"],box["xmin"],box["xmax"]
+            x_min,x_max,y_min,y_max = box["xmin"],box["xmax"],box["ymin"],box["ymax"]
             resizedW,resizedH=box["Rwidth"],box["Rheight"]
             maskFileName = box["MskPath"]
             has_mask = False
@@ -51,5 +54,11 @@ class Image:
                   print("Exception while pasting")
                   break 
         im = Image.fromarray(bgImageCopy)
-        outfile=os.path.join(self.outpath,"synimg.jpg")
+        outfile=os.path.join(self.outpath,ImagePath)
         im.save(outfile)
+        
+    def PrintOnlybox(self,imgdict):
+        BGround_Image = Image.open(imgdict["path"])
+        bgImageCopy = np.copy(BGround_Image)
+        height,weidth = BGround_Image.size
+        pass

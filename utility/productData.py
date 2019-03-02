@@ -131,22 +131,24 @@ class ProductData:
         Wmodified = int(SizeRatio*self.Rwidth)
         Hmodified = int(SizeRatio*self.Rheight)
         if pasteL2R:
-           self.xmin = left + delta + Wmodified
+           self.xmin = left + delta 
+           self.xmax = self.xmin + Wmodified
+           if self.xmax > right - 1  :
+      	      return False
         else:
-           self.xmax = right - delta - Wmodified
+           self.xmax = right - delta 
+           self.xmin = self.xmax - Wmodified
+           if self.xmin < 0:
+              return False
+        if self.xmax <= self.xmin:
+           return False  
         self.ymax = bottom
         self.ymin = self.ymax - Hmodified
-        if self.xmax > right - 1  :
-      	  return False
-        if self.xmin < 0:
-           return False
-        if self.xmax <= self.xmin:
-           return False
-        if self.ymax == self.ymin:
+        if self.ymax <= self.ymin:
            return False
         if self.ymin < top :
            return False
-        IWeidth, IHeight = self.getImageHW
+        IWeidth,IHeight = self.getImageHW
         aspectRatio = IWeidth/IHeight
         newWeidth = int(aspectRatio*Hmodified) 
         self.Rheight=Hmodified

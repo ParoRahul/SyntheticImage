@@ -14,9 +14,9 @@ config[ "PATHS"]={
         "Shelf_Measurement"       : "D:/Img_Repo/Tf_Images/PW/WITH_GT/background_measurement.csv",
         "Shelf_Image"             : "D:/Img_Repo/Tf_Images/PW/WITH_GT/backgrounds",
         "Prod_Measurement"        : "D:/Img_Repo/Tf_Images/PW/WITH_GT/product_measurement_original.csv",
-        "Product_Image"           : "D:/Img_Repo/Tf_Images/PW/WITH_GT/PW_output_images",  
+        "Product_Image"           : "D:/Img_Repo/Tf_Images/PW/WITH_GT/PW_output",  
         "Product_Mask"            : "D:/Img_Repo/Tf_Images/PW/WITH_GT/PW_masks",
-        "Output_Dir"              : "D:/Img_Repo/Tf_Images/PW/WITH_GT/output"
+        "Output_Dir"              : "D:/Img_Repo/Debug"
         }
 
 config[ "DEFAULT"]={
@@ -25,7 +25,7 @@ config[ "DEFAULT"]={
         "Dir_Type"          : "directory",
         "Write_Image"       : False ,
         "Number_Of_Thread"  : 2,
-        "Number_Of_Image"   : 1,
+        "Number_Of_Image"   : 10,
         "Annotation_Type"   : "COCO"
         }
 

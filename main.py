@@ -8,16 +8,15 @@ Created on Tue Oct 23 15:19:30 2018
 """
 from os.path import abspath
 import traceback
-from utility.imageEngine import ShelfImageGenerator
+from utility.imageEngine import ImageGenerator
 
 
 def Main():
     try:
         configPath=abspath("./config/config.yaml")
         print("config Files Loaded From Path {}".format(configPath))
-        ImageGenerator = ShelfImageGenerator(configPath)
-        ImageGenerator()  
-        
+        imageGenerator = ImageGenerator(configPath)
+        imageGenerator()  
     except Exception as e:
         traceback.print_tb(e.__traceback__)
                 
