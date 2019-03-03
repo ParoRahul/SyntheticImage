@@ -7,7 +7,7 @@ Created on Fri Mar  1 19:01:22 2019
 import numpy as np
 import os
 from PIL import Image
-
+from configparser import ConfigParser
 
 class Canvas:
     
@@ -57,8 +57,20 @@ class Canvas:
         outfile=os.path.join(self.outpath,ImagePath)
         im.save(outfile)
         
-    def PrintOnlybox(self,imgdict):
+    def PrintOnlybox(self,imgdict,ImagePath):
         BGround_Image = Image.open(imgdict["path"])
-        bgImageCopy = np.copy(BGround_Image)
+        #bgImageCopy = np.copy(BGround_Image)
         height,weidth = BGround_Image.size
+        blankimage = Image.new('RGB', BGround_Image.size)
+        outfile=os.path.join(self.outpath,ImagePath)
+        blankimage.save(outfile)
         pass
+    
+if __name__=="__main__":
+    configFile_path=os.path.abspath("../config/config.yaml")
+    configFile = ConfigParser()
+    configFile.read(configFile_path)
+    Output_dir=configFile.get("PATHS","output_dir")    
+    canvas = Canvas(Output_dir)    
+    ImagePath=os.path.join(Output_dir,"BluePrint.jpg")
+    canvas.PrintOnlybox({},ImagePath)

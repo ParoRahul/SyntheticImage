@@ -54,7 +54,7 @@ class ShelfData:
                bottom = self.Shelf_position[rack]
             height = (bottom - top - self.bit_thickness)
             height = round(height*random.uniform(0.9,1),2)
-            yield self.left_end,self.right_end,top,bottom,height 
+            yield top,bottom,height 
             
     @property
     def boxCount(self):

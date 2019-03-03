@@ -1,0 +1,20 @@
+2019-03-03 13:30:51,554:__main__:unsupported operand type(s) for /: 'str' and 'int'
+Traceback (most recent call last):
+  File "D:/Python/SyntheticImage/main.py", line 34, in Main
+    logger.info('Completion Time :{} minutes'.format(str(time.time() - start)/60))
+TypeError: unsupported operand type(s) for /: 'str' and 'int'
+2019-03-03 13:30:51,554:__main__:unsupported operand type(s) for /: 'str' and 'int'
+Traceback (most recent call last):
+  File "D:/Python/SyntheticImage/main.py", line 34, in Main
+    logger.info('Completion Time :{} minutes'.format(str(time.time() - start)/60))
+TypeError: unsupported operand type(s) for /: 'str' and 'int'
+2019-03-03 13:30:51,554:__main__:unsupported operand type(s) for /: 'str' and 'int'
+Traceback (most recent call last):
+  File "D:/Python/SyntheticImage/main.py", line 34, in Main
+    logger.info('Completion Time :{} minutes'.format(str(time.time() - start)/60))
+TypeError: unsupported operand type(s) for /: 'str' and 'int'
+2019-03-03 13:30:54,885:__main__:unsupported operand type(s) for /: 'str' and 'int'
+Traceback (most recent call last):
+  File "main.py", line 34, in Main
+    logger.info('Completion Time :{} minutes'.format(str(time.time() - start)/60))
+TypeError: unsupported operand type(s) for /: 'str' and 'int'

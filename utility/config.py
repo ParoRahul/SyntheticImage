@@ -25,7 +25,7 @@ config[ "DEFAULT"]={
         "Dir_Type"          : "directory",
         "Write_Image"       : False ,
         "Number_Of_Thread"  : 2,
-        "Number_Of_Image"   : 10,
+        "Number_Of_Image"   : 1,
         "Annotation_Type"   : "COCO"
         }
 

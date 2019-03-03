@@ -4,7 +4,7 @@ image_type = ['jpg', 'JPEG', 'JPG', 'png', 'PNG']
 dir_type = directory
 write_image = False
 number_of_thread = 2
-number_of_image = 10
+number_of_image = 1
 annotation_type = COCO
 
 [PATHS]

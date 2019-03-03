@@ -8,6 +8,20 @@ Created on Tue Feb 26 19:52:27 2019
 from utility.loadShelfData import  LoadShelfData
 from utility.loadProdData import LoadProductData
 import random
+import logging
+
+logger=logging.getLogger(__name__)
+logger.setLevel(logging.ERROR)
+formatter=logging.Formatter('%(asctime)s:%(name)s:%(message)s')
+file_handler = logging.FileHandler('MainLog.log')
+file_handler.setFormatter(formatter)
+file_handler.setLevel(logging.ERROR)
+stream_handler= logging.StreamHandler()
+stream_handler.setFormatter(formatter)
+stream_handler.setLevel(logging.INFO)
+logger.addHandler(file_handler)
+logger.addHandler(stream_handler)
+logger.propagate = False
 
 class SynthesizeData(LoadShelfData,LoadProductData):
     
@@ -30,9 +44,11 @@ class SynthesizeData(LoadShelfData,LoadProductData):
         # get The maximum Height From Index List
         Max_height = self.get_Nitems_MaxH(indexList)
         # Determin Size Ratio for pasting product Image
-        for left,right,top,bottom,height in shelfdata.returnRackInfo:
+        for top,bottom,height in shelfdata.returnRackInfo:
             SizeRatio=height/Max_height
             pasteL2R=True if random.randint(0,1) == 1 else False
+            left=shelfdata.left_end
+            right=shelfdata.right_end
             for product in self.get_Data_from_index(indexList):
                 delta=self.getDeltaW
                 if product.fit_product(left,right,top,bottom,
@@ -51,16 +67,16 @@ class SynthesizeData(LoadShelfData,LoadProductData):
         if shelfdata.boxCount > 0:
            return shelfdata
         else :
-           print(" Error from PopulateImage")
+           logger.error(" Error from PopulateImage")
            return False
        
     def printConfigs(self):
-        print("-------------------------------------------------------------")
-        print("")
-        print('Shelf_Measurement_path     : {} '.format(self.Shelf_Measurement))
-        print('Shelf_Image                : {} '.format(self.Shelf_Image))
-        print('Product_Measurement_path   : {} '.format(self.Product_Measurement))
-        print('Product_image              : {} '.format(self.Product_Image))
-        print('Product_mask               : {} '.format(self.Product_Mask))
-        print("")
-        print("-------------------------------------------------------------")
+        logger.info("-------------------------------------------------------------")
+        logger.info("")
+        logger.info('Shelf_Measurement_path     : {} '.format(self.Shelf_Measurement))
+        logger.info('Shelf_Image                : {} '.format(self.Shelf_Image))
+        logger.info('Product_Measurement_path   : {} '.format(self.Product_Measurement))
+        logger.info('Product_image              : {} '.format(self.Product_Image))
+        logger.info('Product_mask               : {} '.format(self.Product_Mask))
+        logger.info("")
+        logger.info("-------------------------------------------------------------")

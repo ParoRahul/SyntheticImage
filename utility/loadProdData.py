@@ -10,6 +10,20 @@ import csv
 import os
 import random
 from utility.productData import ProductData
+import logging
+
+logger=logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+formatter=logging.Formatter('%(asctime)s:%(name)s:%(message)s')
+file_handler = logging.FileHandler('MainLog.log')
+file_handler.setFormatter(formatter)
+file_handler.setLevel(logging.ERROR)
+stream_handler= logging.StreamHandler()
+stream_handler.setFormatter(formatter)
+stream_handler.setLevel(logging.INFO)
+logger.addHandler(file_handler)
+logger.addHandler(stream_handler)
+logger.propagate = False
 
 class LoadProductData():
     
@@ -30,20 +44,21 @@ class LoadProductData():
         if os.path.isdir(self.Product_Mask):
            self.Product_mask_found=True
         assert(os.path.isfile(self.Product_Measurement)),\
-        " Product Measurement file not found"
+        logger.error(" Product Measurement file not found")
         assert(os.path.basename(self.Product_Measurement).split('.')[1] =='csv'),\
-        " Product Measurement file is not *.csv type "
+        logger.error(" Product Measurement file is not *.csv type ")
         assert(os.path.getsize(self.Product_Measurement)!= 0 ),\
-        " Product Measurement file is has no data "
+        logger.error(" Product Measurement file is has no data ")
         assert(os.path.isdir(self.Product_Image)),\
-        " Product Image Directrory not found "
+        logger.error(" Product Image Directrory not found ")
         assert(len(os.listdir(self.Product_Image)) !=0),\
-        " No Image found in Product Image Directrory  "
+        logger.error(" No Image found in Product Image Directrory  ")
         assert self.ValidatteDirectoryType(),\
-        "Product Image Directrory not Vaild "
+        logger.error("Product Image Directrory not Vaild ")
         ProductData.set_Property(self.Product_Image,self.Product_Mask,self.Directory_type)
         self.loadProdRecords()
-             
+        logger.info(" Loaded Prodcuct Details, Count {}".format(self.Product_count))
+                
     def loadProdRecords(self): 
         with open(self.Product_Measurement, 'r') as csvfile:
              csvreader = csv.reader(csvfile)
@@ -120,8 +135,7 @@ class LoadProductData():
         if random.randint(1,20) > 19 :
             xShift = xShift + delta
         return xShift 
-    
-        
+            
 if __name__=="__main__":
    configPath=os.path.abspath("../config/config.yaml") 
    Perser = LoadProductData(configPath)  
